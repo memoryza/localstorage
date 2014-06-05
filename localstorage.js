@@ -25,7 +25,6 @@
 					value = key2Value[i];
 					kv = value.split('=');
 					if(kv.length == 2 && kv[1] !== '') {
-						alert(decodeURIComponent(kv[0]))
 						this.removeItem(decodeURIComponent(kv[0]).replace(/^\s+/, ''));
 					}
 				}
