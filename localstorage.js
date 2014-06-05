@@ -18,13 +18,11 @@
 			clear: function() {
 				var key2Value = doc.cookie.split(';'),
 					value = null,
-					keys = [],
-					kv= [],
-					text = '';
+					kv= [];
 				for(var i = 0, _len = key2Value.length; i < _len; i++) {
 					value = key2Value[i];
 					kv = value.split('=');
-					if(kv.length == 2 && kv[1] !== '') {
+					if(kv.length == 2 && kv[1] !== '') {						
 						this.removeItem(decodeURIComponent(kv[0]).replace(/^\s+/, ''));
 					}
 				}
