@@ -3,10 +3,20 @@
 * author: memoryza(jincai.wang@foxmail.com)
 **/
 ;(function(w, doc) {
+	function isLocalStorageNameSupported() {
+	    try { 
+	        var supported = (localStorage in win && w[localStorage]);
+	        if (supported) { 
+	        	localStorage.setItem("storage", ""); localStorage.removeItem("storage");
+	        }
+	    } catch(err) { 
+	    	return false 
+	    }
+	}
 	var storage = null;
-	if(typeof w.localStorage == 'object') {
-		storage = w.localStorage;
-	} else if(typeof w.globalStorage == 'object') {
+	if ( isLocalStorageNameSupported() ) {
+				storage = w.localStorage;
+	} else if (typeof w.globalStorage == 'object') {
 		storage = w.globalStorage[location.host];
 	} else {
 		function cookieStorage() {
