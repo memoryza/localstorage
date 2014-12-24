@@ -70,10 +70,12 @@
 				return key;
 			},
 			removeItem: function(name) {
-				this.setItem(name, '');
+				var exp = +new Date();
+				this.setItem(name, '', exp-1000);
 			},
-			setItem: function(name, value) {
-				var text = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+			setItem: function(name, value, expires) {
+				var exp = expires || (+new Date + 6 * 3600 * 1000);
+				var text = encodeURIComponent(name) + '=' + encodeURIComponent(value) +';domain=' + location.host +';path=/;expires='+expires;
 				doc.cookie = text;
 				value === '' && this[name] ? delete this[name] : (this[name] = value);				
 			}
